@@ -12,7 +12,17 @@ function App() {
     });
   }, []);
 
-  async function handleAddRepository() {}
+  async function handleAddRepository() {
+    const response = await api.post("repositories", {
+      title: `Novo repositório ${Date.now()}`,
+      url: "http://github.com/teste",
+      techs: ["Node.js", "React JS", "React Native"],
+    });
+
+    const repository = response.data;
+
+    setRepositories([...repositories, repository]);
+  }
 
   async function handleRemoveRepository(id) {
     // TODO
